@@ -6,21 +6,35 @@ let bookList = [
   { "title": "The moon", "author": "sam", "pages": 260 }
 ]
 
-const Book = ({ title, author, pages,freeBookMark }) => { 
+const Book = ({ title, author, pages, freeBookMark }) => {
   return (
     <section>
       <h2>{title}</h2>
       <p>by: {author}</p>
       <p>Pages: {pages} pages</p>
-  <p>Free BookMark {freeBookMark? 'yes ': 'no!'}</p>
+      <p>Free BookMark {freeBookMark ? 'yes ' : 'no!'}</p>
     </section>
   )
 }
+
+
+const Hiring = () =>
+  <div> 
+    <p>The library is hiring</p>
+  </div>
+
+
+const NotHiring = () =>
+  <div> 
+    <p>The library is not hiring</p>
+  </div>
+
 class Library extends Component {
 
   state = {
     open: true,
-    freeBookMark: false
+    freeBookMark: false,
+    hiring:true
   }
 
   // constructor(props) {
@@ -47,6 +61,7 @@ class Library extends Component {
     const { books } = this.props
     return (
       <div>
+         {this.state.Hiring? <Hiring/> :<NotHiring/>}
         <button onClick={this.toggleOpenCloased}>Change</button>
         <h1>the library is {this.state.open ? 'open' : 'closed'}</h1>
         {books.map(
