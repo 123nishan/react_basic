@@ -1,77 +1,12 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
+import Library from './library'
+
 
 let bookList = [
   { "title": "The sun", "author": "nishan", "pages": 260 },
   { "title": "The moon", "author": "sam", "pages": 260 }
 ]
-
-const Book = ({ title, author, pages, freeBookMark }) => {
-  return (
-    <section>
-      <h2>{title}</h2>
-      <p>by: {author}</p>
-      <p>Pages: {pages} pages</p>
-      <p>Free BookMark {freeBookMark ? 'yes ' : 'no!'}</p>
-    </section>
-  )
-}
-
-
-const Hiring = () =>
-  <div> 
-    <p>The library is hiring</p>
-  </div>
-
-
-const NotHiring = () =>
-  <div> 
-    <p>The library is not hiring</p>
-  </div>
-
-class Library extends Component {
-
-  state = {
-    open: true,
-    freeBookMark: false,
-    hiring:true
-  }
-
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     open: true
-  //   }
-  //   this.toggleOpenCloased = this.toggleOpenCloased.bind(this)
-  // }
-
-  //=> it will bind the  method
-
-  toggleOpenCloased = () => {
-    // prevstate act as a call back function. no matter how long will it take it will change the state
-    this.setState(prevState => ({
-      open: !prevState.open
-    }))
-  }
-
-
-
-  render() {
-    console.log(this.state)
-    const { books } = this.props
-    return (
-      <div>
-         {this.state.Hiring? <Hiring/> :<NotHiring/>}
-        <button onClick={this.toggleOpenCloased}>Change</button>
-        <h1>the library is {this.state.open ? 'open' : 'closed'}</h1>
-        {books.map(
-          (book, i) => <Book key={i} title={book.title} author={book.author} pages={book.pages} freeBookMark={this.state.freeBookMark} />
-        )}
-
-      </div>
-    )
-  }
-}
 
 render(
   <Library books={bookList} />,
@@ -131,7 +66,7 @@ render(
 //           <p>Total days: {props.total}</p>
 //       </div>
 //       <div>
-//           <p>Powder days: assadfhdkf gujsdbf{props.powder}</p>
+//           <p>Powder days: {props.powder}</p>
 //       </div>
 //       <div>
 //           <p>backcountry days: {props.backcountry}</p>
