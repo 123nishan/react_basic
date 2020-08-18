@@ -28,7 +28,8 @@ submit=e=> {
       )
   }
 }
-render (
-  <FavoriteColorForm/>,
-  document.getElementById('root')
-)
+export default FavoriteColorForm
+// render (
+//   <FavoriteColorForm/>,
+//   document.getElementById('root')
+// )

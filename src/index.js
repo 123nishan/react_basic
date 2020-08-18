@@ -1,15 +1,85 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import { render } from 'react-dom'
 import Library from './library'
-
+import App from './function'
+import FavoriteColorForm from './colorForm'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 let bookList = [
   { "title": "The sun", "author": "nishan", "pages": 260 },
   { "title": "The moon", "author": "sam", "pages": 260 }
 ]
 
+
+
+var Car = () => {
+  const [state, setstate] = useState(0);
+  const setCount = (name) => {
+    alert(`hello, ${name}`);
+    // console.log(name);
+    setstate(state + 1);
+
+  }
+  
+
+  return (
+    <div>
+      <button onClick={() => setCount('nishan')}>
+        Click me
+</button>
+      <br />
+      <p>{state}</p>
+    </div>
+  );
+}
+class Main extends Component {
+  render() {
+    return (
+        <Router>
+          <div className="Main">
+            <ul className="Main-header">
+              <li>
+                <Link to="/">Car</Link>
+              </li>
+              <li>
+                <Link to="/library">Library</Link>
+              </li>
+              <li>
+                <Link to="/color">Color</Link>
+              </li>
+              <li>
+                <Link to="/function">Function</Link>
+              </li>
+            </ul>
+            <Switch>
+              <Route exact path='/' component={Car}></Route>
+              <Route exact path='/library' component={Library}></Route>
+              <Route exact path='/color' component={FavoriteColorForm}></Route>
+              <Route exact path='/function' component={App}></Route>
+            </Switch>
+          </div>
+        </Router>
+    ) ;
+  }
+}
+// const ExampleComponent = () => {
+
+
+
+//   return (
+//     <button onClick={() => sayHello('James')}>Greet</button>
+//   );
+// }
+
+
 render(
-  <Library books={bookList} />,
+  // <Library books={bookList} />,
+  <Main />,
   document.getElementById('root')
 )
 
